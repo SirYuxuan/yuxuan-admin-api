@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: YuxuanAdmin
+  profiles:
+    include: logging, db, token, redis, mybatis
+  mvc:
+    throw-exception-if-no-handler-found: true
+server:
+  port: 10002
