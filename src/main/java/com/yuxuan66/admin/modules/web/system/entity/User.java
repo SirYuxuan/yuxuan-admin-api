@@ -16,7 +16,9 @@ import java.sql.Timestamp;
  */
 @Data
 @TableName("sys_user")
-public class User extends BaseEntity<User> implements Serializable {
+public class User extends BaseEntity<User> implements Serializable,Cloneable {
+
+
 
     @Serial
     private static final long serialVersionUID = -97197633279961034L;
@@ -37,10 +39,7 @@ public class User extends BaseEntity<User> implements Serializable {
      * 头像ID
      */
     private String avatar;
-    /**
-     * 部门ID
-     */
-    private Long deptId;
+
     /**
      * 用户状态，0=正常，1=冻结，2=锁定
      */
@@ -71,7 +70,13 @@ public class User extends BaseEntity<User> implements Serializable {
     private String loginCity;
 
 
-
-
+    @Override
+    public User clone() {
+        try {
+            return (User) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError();
+        }
+    }
 }
 

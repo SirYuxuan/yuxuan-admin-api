@@ -1,0 +1,51 @@
+package com.yuxuan66.admin.cache;
+
+import cn.hutool.core.util.StrUtil;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.yuxuan66.admin.modules.web.system.entity.Config;
+import com.yuxuan66.admin.modules.web.system.mapper.ConfigMapper;
+import lombok.extern.slf4j.Slf4j;
+
+/**
+ * Config的配套查询工具，使用缓存
+ *
+ * @author Sir丶雨轩
+ * @since 2022/9/8
+ */
+@Slf4j
+public final class ConfigKit {
+
+
+    /**
+     * 根据缓存的Key获取内容
+     *
+     * @param key key
+     * @return 缓存内容
+     */
+    public static String get(String key) {
+        return get(key, false);
+    }
+
+
+    /**
+     * 根据缓存的Key获取内容
+     *
+     * @param key   key
+     * @param force 是否强制
+     * @return 缓存内容
+     */
+    public static String get(String key, boolean force) {
+        if (!force && StaticComponent.redisKit.hExist(CacheKey.CONFIG, key)) {
+            return StaticComponent.redisKit.hGet(CacheKey.CONFIG, key);
+        }
+        ConfigMapper configMapper = StaticComponent.configMapper;
+        Config config = configMapper.selectOne(new QueryWrapper<Config>().eq("name", key));
+        if (config == null) {
+            return StrUtil.EMPTY;
+        }
+        StaticComponent.redisKit.hSet(CacheKey.CONFIG, key, config.getValue());
+        return config.getValue();
+    }
+
+
+}

@@ -1,6 +1,7 @@
 package com.yuxuan66.admin.support.base.resp;
 
 import cn.hutool.core.lang.Dict;
+import com.yuxuan66.admin.common.i18n.I18n;
 
 import java.util.Objects;
 
@@ -116,6 +117,15 @@ public class Rs extends Dict {
         return Rs.error(msg, null);
     }
 
+    /**
+     * 返回错误消息,使用I18n获取数据
+     *
+     * @param msg 返回内容
+     * @return 警告消息
+     */
+    public static Rs errorI(String msg) {
+        return Rs.error(I18n.get(msg), null);
+    }
 
     /**
      * 返回错误消息
