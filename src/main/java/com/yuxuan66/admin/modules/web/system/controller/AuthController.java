@@ -1,7 +1,7 @@
 package com.yuxuan66.admin.modules.web.system.controller;
 
-import com.yuxuan66.admin.modules.web.entity.system.dto.LoginDto;
-import com.yuxuan66.admin.modules.web.system.service.LoginService;
+import com.yuxuan66.admin.modules.web.system.entity.dto.LoginDto;
+import com.yuxuan66.admin.modules.web.system.service.AuthService;
 import com.yuxuan66.admin.support.base.BaseController;
 import com.yuxuan66.admin.support.base.resp.Rs;
 import lombok.RequiredArgsConstructor;
@@ -18,9 +18,9 @@ import javax.validation.Valid;
  */
 @RestController
 @RequiredArgsConstructor
-public class LoginController extends BaseController {
+public class AuthController extends BaseController {
 
-    private final LoginService loginService;
+    private final AuthService authService;
 
     /**
      * 用户登录
@@ -29,6 +29,6 @@ public class LoginController extends BaseController {
      */
     @PostMapping(path = "/login")
     public Rs login(@Valid @RequestBody LoginDto loginDto){
-        return loginService.login(loginDto);
+        return authService.login(loginDto);
     }
 }

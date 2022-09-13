@@ -11,6 +11,16 @@ import com.yuxuan66.admin.cache.annotation.RealKey;
 public interface CacheKey {
 
     /**
+     * 用户默认头像
+     */
+
+    String DEFAULT_AVATAR = "DEFAULT_DATA:AVATAR";
+    /**
+     * 用户默认角色
+     */
+    String DEFAULT_ROLE = "DEFAULT_DATA:ROLE";
+
+    /**
      * 验证码图片
      */
     String CAPTCHA_CODE = "CAPTCHA_CODE";

@@ -1,6 +1,7 @@
 package com.yuxuan66.admin.support.base;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * 基础Service

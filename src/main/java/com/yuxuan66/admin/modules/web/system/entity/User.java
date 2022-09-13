@@ -1,6 +1,8 @@
 package com.yuxuan66.admin.modules.web.system.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.yuxuan66.admin.common.consts.UserSex;
+import com.yuxuan66.admin.common.consts.UserStatus;
 import com.yuxuan66.admin.support.base.BaseEntity;
 import lombok.Data;
 
@@ -16,9 +18,7 @@ import java.sql.Timestamp;
  */
 @Data
 @TableName("sys_user")
-public class User extends BaseEntity<User> implements Serializable,Cloneable {
-
-
+public class User extends BaseEntity<User> implements Serializable {
 
     @Serial
     private static final long serialVersionUID = -97197633279961034L;
@@ -43,7 +43,7 @@ public class User extends BaseEntity<User> implements Serializable,Cloneable {
     /**
      * 用户状态，0=正常，1=冻结，2=锁定
      */
-    private Integer status;
+    private UserStatus status = UserStatus.NORMAL;
     /**
      * 手机号
      */
@@ -55,7 +55,7 @@ public class User extends BaseEntity<User> implements Serializable,Cloneable {
     /**
      * 性别 0=女,1=男,2=未知
      */
-    private Integer sex;
+    private UserSex sex = UserSex.UNKNOWN;
     /**
      * 登录时间
      */
@@ -70,13 +70,5 @@ public class User extends BaseEntity<User> implements Serializable,Cloneable {
     private String loginCity;
 
 
-    @Override
-    public User clone() {
-        try {
-            return (User) super.clone();
-        } catch (CloneNotSupportedException e) {
-            throw new AssertionError();
-        }
-    }
 }
 

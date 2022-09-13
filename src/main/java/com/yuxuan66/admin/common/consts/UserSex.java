@@ -6,29 +6,29 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Objects;
 
 /**
- * 用户状态枚举
+ * 用户性别枚举
  * @author Sir丶雨轩
  * @since 2022/9/13
  */
-public enum UserStatus {
+public enum UserSex {
 
     /**
-     * 正常
+     * 男
      */
-    NORMAL(1),
+    MALE(0),
     /**
-     * 冻结
+     * 女
      */
-    FROZEN(2),
+    FEMALE(1),
     /**
-     * 锁定
+     * 未知
      */
-    LOCKING(3);
+    UNKNOWN(2);
     @EnumValue
     @JsonValue
     private final Integer value;
 
-    UserStatus(Integer value) {
+    UserSex(Integer value) {
         this.value = value;
     }
 

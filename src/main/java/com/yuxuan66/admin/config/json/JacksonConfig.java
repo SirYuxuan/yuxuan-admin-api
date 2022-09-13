@@ -7,6 +7,7 @@ import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.introspect.Annotated;
 import com.fasterxml.jackson.databind.introspect.AnnotatedMethod;
@@ -44,6 +45,7 @@ public class JacksonConfig {
             }
 
         });
+        objectMapper.configure(SerializationFeature.WRITE_ENUMS_USING_TO_STRING, true);
         SimpleModule simpleModule = new SimpleModule();
         // 这个设置会覆盖字段注解
         objectMapper.setDateFormat(new SimpleDateFormat(DatePattern.NORM_DATETIME_PATTERN));

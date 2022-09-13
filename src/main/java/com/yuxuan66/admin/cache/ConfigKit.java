@@ -1,5 +1,6 @@
 package com.yuxuan66.admin.cache;
 
+import cn.hutool.core.convert.Convert;
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.yuxuan66.admin.modules.web.system.entity.Config;
@@ -24,6 +25,31 @@ public final class ConfigKit {
      */
     public static String get(String key) {
         return get(key, false);
+    }
+
+    /**
+     * 根据缓存的key获取内容，转换为指定类型
+     *
+     * @param key   key
+     * @param clazz 数据类型
+     * @param force 是否强制更新
+     * @param <T>   数据类型
+     * @return 缓存内容
+     */
+    public static <T> T get(String key, Class<T> clazz, boolean force) {
+        return Convert.convert(clazz, get(key, force));
+    }
+
+    /**
+     * 根据缓存的key获取内容，转换为指定类型
+     *
+     * @param key   key
+     * @param clazz 数据类型
+     * @param <T>   数据类型
+     * @return 缓存内容
+     */
+    public static <T> T get(String key, Class<T> clazz) {
+        return get(key, clazz, false);
     }
 
 

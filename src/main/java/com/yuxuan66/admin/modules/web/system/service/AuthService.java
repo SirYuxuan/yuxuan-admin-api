@@ -6,13 +6,15 @@ import cn.hutool.core.util.StrUtil;
 import cn.hutool.crypto.asymmetric.KeyType;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.yuxuan66.admin.cache.CacheKey;
+import com.yuxuan66.admin.cache.ConfigKit;
 import com.yuxuan66.admin.cache.StaticComponent;
 import com.yuxuan66.admin.cache.redis.RedisKit;
 import com.yuxuan66.admin.common.consts.UserStatus;
 import com.yuxuan66.admin.common.utils.PasswordUtil;
 import com.yuxuan66.admin.common.utils.Stp;
-import com.yuxuan66.admin.modules.web.entity.system.dto.LoginDto;
 import com.yuxuan66.admin.modules.web.system.entity.User;
+import com.yuxuan66.admin.modules.web.system.entity.UsersRoles;
+import com.yuxuan66.admin.modules.web.system.entity.dto.LoginDto;
 import com.yuxuan66.admin.modules.web.system.entity.dto.RegisterDto;
 import com.yuxuan66.admin.modules.web.system.mapper.UserMapper;
 import com.yuxuan66.admin.support.base.BaseService;
@@ -66,14 +68,26 @@ public class AuthService extends BaseService<User, UserMapper> {
 
     /**
      * 用户注册
+     *
      * @param registerDto 用户信息
      * @return 标准返回
      */
-    public Rs register(RegisterDto registerDto){
+    public Rs register(RegisterDto registerDto) {
+        // 基础数据校验
         checkCode(registerDto);
+        checkUserName(registerDto.getUsername(), null);
 
+        // 保存用户基本信息
         User user = new User();
+        user.setUsername(registerDto.getUsername());
+        user.setNickName(user.getUsername());
+        // 用私钥对前台传递密码进行解密,在使用PasswordUtil进行加密
+        user.setPassword(PasswordUtil.createHash(StaticComponent.rsaKit.decryptStr(registerDto.getPassword(), KeyType.PrivateKey)));
+        user.setAvatar(ConfigKit.get(CacheKey.DEFAULT_AVATAR));
         user.insert();
+
+        // 给用户绑定上默认角色
+        new UsersRoles().setUserId(user.getId()).setRoleId(ConfigKit.get(CacheKey.DEFAULT_ROLE, Long.class)).insert();
 
         return Rs.ok();
     }
@@ -81,23 +95,35 @@ public class AuthService extends BaseService<User, UserMapper> {
     /**
      * 退出登录
      */
-    public void logout(){
+    public void logout() {
         Stp.logout();
     }
 
 
     /**
      * 校验注册验证码是否正确
+     *
      * @param registerDto 注册信息
      */
-    private void checkCode(RegisterDto registerDto){
-        String code = Convert.toStr(redis.hGet(CacheKey.CAPTCHA_CODE ,registerDto.getUuid()));
+    private void checkCode(RegisterDto registerDto) {
+        String code = Convert.toStr(redis.hGet(CacheKey.CAPTCHA_CODE, registerDto.getUuid()));
         redis.del(registerDto.getUuid());
         if (StrUtil.isBlank(registerDto.getCode()) || !registerDto.getCode().equalsIgnoreCase(code)) {
-           throw new BizException("error.captchaCode");
+            throw new BizException("error.captchaCode");
         }
     }
 
+    /**
+     * 判断用户名在系统中是否存在
+     *
+     * @param username 用户名
+     * @param id       用户id
+     */
+    private void checkUserName(String username, Long id) {
+        if (count(new QueryWrapper<User>().eq("username", username).ne(id != null, "id", id)) > 0) {
+            throw new BizException("error.usernameExist");
+        }
+    }
 
 
 

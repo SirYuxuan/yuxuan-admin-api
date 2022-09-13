@@ -25,22 +25,27 @@ public class WebConfig implements WebMvcConfigurer {
 
     private final ObjectMapper objectMapper;
 
-    public WebConfig(ObjectMapper objectMapper){
+
+
+
+    public WebConfig(ObjectMapper objectMapper) {
         this.objectMapper = objectMapper;
     }
 
     /**
      * 自定义消息转换器
+     *
      * @param converters 消息转换器列表
      */
     @Override
     public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
-        converters.removeIf(item ->  item instanceof MappingJackson2HttpMessageConverter);
+        converters.removeIf(item -> item instanceof MappingJackson2HttpMessageConverter);
         converters.add(new MappingJackson2HttpMessageConverter(objectMapper));
     }
 
     /**
      * 拦截器添加
+     *
      * @param registry 拦截器注册中心
      */
     @Override
@@ -50,6 +55,7 @@ public class WebConfig implements WebMvcConfigurer {
 
     /**
      * 处理跨域问题
+     *
      * @return 跨域配置
      */
     @Bean
