@@ -16,22 +16,50 @@
 
     <properties>
         <hutool-all.version>5.8.6</hutool-all.version>
-        <satoken.version>1.30.0</satoken.version>
+        <satoken.version>1.31.0</satoken.version>
         <java.version>17</java.version>
-        <fastjson.version>2.0.12</fastjson.version>
+        <fastjson.version>2.0.13</fastjson.version>
         <mysql.version>8.0.29</mysql.version>
         <UserAgentUtils.version>1.21</UserAgentUtils.version>
         <mybatis-plus-boot-starter.version>3.5.2</mybatis-plus-boot-starter.version>
         <ehi-verification.version>1.0.6</ehi-verification.version>
+        <sharding.version>4.1.1</sharding.version>
+        <jaxb-impl.version>4.0.0</jaxb-impl.version>
     </properties>
 
     <dependencies>
+
+
+
+        <!-- Java EE API，由于JDK9提出的模块化的概念，导致Java.EE模块不再以后的版本里默认提供 -->
+        <dependency>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.xml.bind</groupId>
+            <artifactId>jaxb-impl</artifactId>
+            <version>${jaxb-impl.version}</version>
+        </dependency>
+
+        <!-- SpringBoot Sharding Jdbc -->
+       <!-- <dependency>
+            <groupId>org.apache.shardingsphere</groupId>
+            <artifactId>sharding-jdbc-spring-boot-starter</artifactId>
+            <version>${sharding.version}</version>
+        </dependency>-->
 
 
         <!-- SpringBoot Web -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!-- SpringBoot Redis -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
 
         <!-- Database -->
@@ -46,6 +74,7 @@
             <artifactId>mybatis-plus-boot-starter</artifactId>
             <version>${mybatis-plus-boot-starter.version}</version>
         </dependency>
+
 
         <!-- SaToken -->
         <dependency>

@@ -13,22 +13,23 @@ import javax.validation.Valid;
 
 /**
  * 用户登录/退出
+ *
  * @author Sir丶雨轩
  * @since 2022/9/8
  */
 @RestController
 @RequiredArgsConstructor
-public class AuthController extends BaseController {
+public class AuthController extends BaseController<AuthService> {
 
-    private final AuthService authService;
 
     /**
      * 用户登录
+     *
      * @param loginDto 登录信息
      * @return 用户信息
      */
     @PostMapping(path = "/login")
-    public Rs login(@Valid @RequestBody LoginDto loginDto){
-        return authService.login(loginDto);
+    public Rs login(@Valid @RequestBody LoginDto loginDto) {
+        return baseService.login(loginDto);
     }
 }

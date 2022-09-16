@@ -41,7 +41,7 @@ public class JacksonConfig {
         serializerProvider.setNullValueSerializer(new JsonSerializer<>() {
             @Override
             public void serialize(Object o, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
-                jsonGenerator.writeString("");
+                jsonGenerator.writeObject(null);
             }
 
         });

@@ -5,5 +5,14 @@ spring:
     include: logging, db, token, redis, mybatis
   mvc:
     throw-exception-if-no-handler-found: true
+  web:
+    resources:
+      add-mappings: false
 server:
   port: 10002
+logging:
+  level:
+    root: info
+    com:
+      yuxuan66: debug
+

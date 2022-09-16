@@ -19,7 +19,6 @@ public final class I18n {
      * @return 值
      */
     public static String get(String key, Object... params) {
-
         return StaticComponent.messageSource.getMessage(key, params, LocaleContextHolder.getLocale());
     }
 }

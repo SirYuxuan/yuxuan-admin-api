@@ -1,6 +1,5 @@
 package com.yuxuan66.admin.common.consts;
 
-import com.baomidou.mybatisplus.annotation.EnumValue;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 import java.util.Objects;
@@ -15,15 +14,15 @@ public enum UserStatus {
     /**
      * 正常
      */
-    NORMAL(1),
+    NORMAL(0),
     /**
      * 冻结
      */
-    FROZEN(2),
+    FROZEN(1),
     /**
      * 锁定
      */
-    LOCKING(3);
+    LOCKING(2);
     @EnumValue
     @JsonValue
     private final Integer value;
@@ -39,4 +38,6 @@ public enum UserStatus {
     public boolean equals(Integer status){
         return Objects.equals(status,this.value);
     }
+
+
 }

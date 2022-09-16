@@ -1,5 +1,6 @@
 package com.yuxuan66.admin.modules.web.system.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.yuxuan66.admin.common.consts.UserSex;
 import com.yuxuan66.admin.common.consts.UserStatus;
@@ -9,6 +10,9 @@ import lombok.Data;
 import java.io.Serial;
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 /**
  * 系统-用户表(SysUser)实体类
@@ -68,6 +72,24 @@ public class User extends BaseEntity<User> implements Serializable {
      * 登录城市
      */
     private String loginCity;
+
+    /**
+     * 用户权限字符串
+     */
+    @TableField(exist = false)
+    private Set<String> permissions;
+
+    /**
+     * 用户所属角色列表
+     */
+    @TableField(exist = false)
+    private Set<Role> roles;
+
+    /**
+     * 菜单列表
+     */
+    @TableField(exist = false)
+    private List<Menu> menus = new ArrayList<>();
 
 
 }

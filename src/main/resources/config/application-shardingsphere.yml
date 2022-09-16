@@ -1,0 +1,20 @@
+spring:
+  shardingsphere:
+    # 打印sql
+    props:
+      sql:
+        show: false
+    sharding:
+      tables:
+        sys_log:
+          # 分表节点 可以理解为分表后的那些表
+          actualDataNodes: main.sys_log_$->{2022..2099}$->{(1..12).collect{t ->t.toString().padLeft(2,'0')}}
+          key-generator:
+            column: id
+            type: SNOWFLAKE #注意是大写 ，也可使用 UUID
+          tableStrategy:
+            inline:
+              # 根据哪列分表
+              shardingColumn: create_time
+              # 分表算法 每月一张表
+              algorithmExpression: sys_log_$->{Calendar.getInstance().get(Calendar.YEAR)}$->{(Calendar.getInstance().get(Calendar.MONTH)+1).toString().padLeft(2,'0')}
