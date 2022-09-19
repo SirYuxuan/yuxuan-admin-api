@@ -6,32 +6,22 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Objects;
 
 /**
- * 用户性别枚举
- *
  * @author Sir丶雨轩
- * @since 2022/9/13
+ * @since 2022/9/19
  */
-public enum UserSex {
+public enum MenuType {
 
-    /**
-     * 男
-     */
-    MALE(0, "男", "MALE"),
-    /**
-     * 女
-     */
-    FEMALE(1, "女", "FEMALE"),
-    /**
-     * 未知
-     */
-    UNKNOWN(2, "未知", "UNKNOWN");
+    CATALOG(0, "目录", "catalog"),
+    MENU(1, "菜单", "menu"),
+    BUTTON(2, "按钮", "button");;
+
     @JsonValue
     @EnumValue
     private final Integer value;
     private String name;
     private String enName;
 
-    UserSex(Integer value, String name, String enName) {
+    MenuType(Integer value, String name, String enName) {
         this.value = value;
         this.name = name;
         this.enName = enName;
@@ -52,6 +42,4 @@ public enum UserSex {
     public boolean equals(Integer status) {
         return Objects.equals(status, this.value);
     }
-
-
 }

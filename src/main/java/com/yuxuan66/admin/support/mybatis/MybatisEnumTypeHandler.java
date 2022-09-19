@@ -1,12 +1,12 @@
 package com.yuxuan66.admin.support.mybatis;
 
 import cn.hutool.core.convert.Convert;
+import com.baomidou.mybatisplus.annotation.EnumValue;
 import com.baomidou.mybatisplus.annotation.IEnum;
 import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 import com.baomidou.mybatisplus.core.toolkit.ExceptionUtils;
 import com.baomidou.mybatisplus.core.toolkit.ReflectionKit;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
-import com.yuxuan66.admin.common.consts.EnumValue;
 import org.apache.ibatis.reflection.DefaultReflectorFactory;
 import org.apache.ibatis.reflection.MetaClass;
 import org.apache.ibatis.reflection.ReflectorFactory;

@@ -44,4 +44,10 @@ public @interface TreeField {
      * @return 二级名称
      */
     String secondLevelName() default "";
+
+    /**
+     * 是否是枚举
+     * @return 枚举
+     */
+    boolean isEnum() default false;
 }

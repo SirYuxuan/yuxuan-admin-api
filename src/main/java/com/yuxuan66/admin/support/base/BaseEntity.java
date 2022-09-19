@@ -1,6 +1,7 @@
 package com.yuxuan66.admin.support.base;
 
 import com.baomidou.mybatisplus.annotation.FieldFill;
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
@@ -15,7 +16,7 @@ import java.sql.Timestamp;
 @Data
 public class BaseEntity<T extends Model<?>> extends Model<T>{
 
-    @TableId
+    @TableId(type = IdType.AUTO)
     private Long id;
 
     /**

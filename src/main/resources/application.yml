@@ -15,4 +15,9 @@ logging:
     root: info
     com:
       yuxuan66: debug
+    org:
+      apache:
+        poi:
+          xssf:
+            streaming: warn
 

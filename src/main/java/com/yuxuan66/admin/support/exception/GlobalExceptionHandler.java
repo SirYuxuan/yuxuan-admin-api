@@ -76,8 +76,7 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(Throwable.class)
     public ResponseEntity<Rs> handleException(Throwable e) {
-
-        log.error(e.getMessage(), e);
+        e.printStackTrace();
         String message = Convert.toStr(e.getMessage(), I18n.get("error.500"));
 
 

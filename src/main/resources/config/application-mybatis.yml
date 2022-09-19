@@ -1,5 +1,5 @@
 mybatis-plus:
   global-config:
     banner: false
-  configuration:
-    default-enum-type-handler: com.yuxuan66.admin.support.mybatis.MybatisEnumTypeHandler
+  #configuration:
+   #default-enum-type-handler: com.yuxuan66.admin.support.mybatis.MybatisEnumTypeHandler

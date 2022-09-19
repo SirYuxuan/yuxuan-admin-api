@@ -11,6 +11,9 @@ import com.yuxuan66.admin.support.base.resp.Rs;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
+import java.util.Set;
+
 /**
  * @author Sir丶雨轩
  * @since 2022/9/16
@@ -42,6 +45,27 @@ public class UserController extends BaseController<UserService> {
         return baseService.list(userQuery);
     }
 
+    /**
+     * 批量删除用户数据，会删除用户的附属信息
+     *
+     * @param ids 用户id列表
+     * @return 标准返回
+     */
+    @DeleteMapping
+    public Rs del(@RequestBody Set<Long> ids) {
+        return baseService.del(ids);
+    }
+
+    /**
+     * 新增用户
+     *
+     * @param resources 用户
+     * @return 标准返回
+     */
+    @PostMapping
+    public Rs add(@RequestBody User resources) {
+        return baseService.add(resources);
+    }
 
     /**
      * 修改用户
@@ -51,7 +75,8 @@ public class UserController extends BaseController<UserService> {
      */
     @PutMapping
     public Rs edit(@RequestBody User resources) {
-        return baseService.edit(resources);
+        baseService.edit(resources);
+        return Rs.ok();
     }
 
     /**
@@ -62,7 +87,18 @@ public class UserController extends BaseController<UserService> {
      * @return 是否存在
      */
     @GetMapping(path = "/checkExist")
-    public Rs checkExist(String field, String data, String type,Long id) {
-        return baseService.checkExist(field, data, type,id);
+    public Rs checkExist(String field, String data, String type, Long id) {
+        return Rs.ok(baseService.checkExist(field, data, type, id) > 0);
+    }
+
+    /**
+     * 导出用户列表
+     *
+     * @param userQuery 查询条件
+     * @throws IOException IOException
+     */
+    @GetMapping(path = "/download")
+    public void download(UserQuery userQuery) throws IOException {
+        baseService.download(userQuery);
     }
 }

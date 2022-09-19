@@ -14,12 +14,4 @@ import javax.annotation.PostConstruct;
 @Service
 public class LogService extends BaseService<Log, LogMapper> {
 
-    @PostConstruct
-    public void sss(){
-        Log log1 = new Log();
-        log1.insert();
-        Log log2 = new Log();
-        log2.insert();
-    }
-
 }

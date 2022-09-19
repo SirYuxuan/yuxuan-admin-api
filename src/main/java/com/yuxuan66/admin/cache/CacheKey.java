@@ -38,4 +38,13 @@ public interface CacheKey {
      * rsa 公钥
      */
     String CONFIG_RSA_PUBLIC = "rsaPublic";
+
+    // ************************ Service缓存 ***************************/
+    /**
+     * UserService Cache
+     */
+    String SERVICE_USER = "Cache:User";
+    String SERVICE_ROLE = "Cache:Role";
+    String SERVICE_MENU = "Cache:Menu";
+    String SERVICE_USER_COUNT = "Cache:User:Count";
 }

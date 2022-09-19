@@ -1,7 +1,10 @@
 package com.yuxuan66.admin.modules.web.system.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.yuxuan66.admin.common.consts.MenuType;
 import com.yuxuan66.admin.common.utils.tree.TreeField;
 import com.yuxuan66.admin.common.utils.tree.TreeId;
 import com.yuxuan66.admin.support.base.BaseEntity;
@@ -24,6 +27,8 @@ public class Menu extends BaseEntity<Menu> implements Serializable {
     private static final long serialVersionUID = 413567790353332932L;
 
     @TreeId
+    @TreeField
+    @TableId(type = IdType.AUTO)
     private Long id;
 
     /**
@@ -42,17 +47,22 @@ public class Menu extends BaseEntity<Menu> implements Serializable {
      * 父级ID
      */
     @TreeId(isParent = true)
-    private Long pid;
+    private Long pid = 0L;
     /**
      * 菜单类型 0=目录,1=菜单,2=按钮
      */
-    @TreeField
-    private Integer type;
+    @TreeField(isEnum = true)
+    private MenuType type;
     /**
      * 菜单图标
      */
     @TreeField(secondLevel = "meta")
     private String icon;
+    /**
+     * 菜单图标
+     */
+    @TreeField(secondLevel = "meta")
+    private String remixIcon;
     /**
      * 是否外链
      */
