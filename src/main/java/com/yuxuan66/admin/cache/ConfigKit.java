@@ -37,7 +37,11 @@ public final class ConfigKit {
      * @return 缓存内容
      */
     public static <T> T get(String key, Class<T> clazz, boolean force) {
-        return Convert.convert(clazz, get(key, force));
+        Object val = get(key, force);
+        if(val == null){
+            return null;
+        }
+        return Convert.convert(clazz, val);
     }
 
     /**

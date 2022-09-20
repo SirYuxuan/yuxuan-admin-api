@@ -31,6 +31,7 @@ public class User extends BaseEntity<User> implements Serializable {
      * 用户名
      */
     private String username;
+
     /**
      * 密码
      */

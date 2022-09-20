@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import javax.annotation.Resource;
 import java.util.Arrays;
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Redis操作工具
@@ -52,9 +53,10 @@ public class RedisKit extends General {
 
     /**
      * 删除一组缓存
+     *
      * @param keys key列表
      */
-    public void del(String ...keys){
+    public void del(String... keys) {
         redisTemplate.delete(Arrays.stream(keys).toList());
     }
 
@@ -96,6 +98,20 @@ public class RedisKit extends General {
     }
 
     /**
+     * 设置字符串数据到缓存，并设置过期时间
+     *
+     * @param key  key
+     * @param data 数据
+     * @param time 过期时间
+     */
+    public void set(String key, String data, long time) {
+        redisTemplate.opsForValue().set(key, data);
+        if (time > 0) {
+            expire(time, key);
+        }
+    }
+
+    /**
      * 设置字符串数据到hash缓存
      *
      * @param key  key
@@ -104,6 +120,25 @@ public class RedisKit extends General {
      */
     public void hSet(String key, String hKey, String data) {
         redisTemplate.opsForHash().put(key, hKey, data);
+    }
+
+
+    /**
+     * 指定缓存失效时间
+     *
+     * @param key  键
+     * @param time 时间(秒)
+     */
+    public void expire(long time, String... key) {
+        try {
+            if (time > 0) {
+                for (String s : key) {
+                    redisTemplate.expire(s, time, TimeUnit.SECONDS);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 

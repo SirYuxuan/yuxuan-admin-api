@@ -5,6 +5,7 @@ import cn.hutool.extra.spring.SpringUtil;
 import com.yuxuan66.admin.cache.redis.RedisKit;
 import com.yuxuan66.admin.modules.web.system.mapper.ConfigMapper;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Component;
 
@@ -36,6 +37,10 @@ public final class StaticComponent {
      * i18n操作对象
      */
     public static MessageSource messageSource;
+    /**
+     * MQ操作对象
+     */
+    public static RabbitTemplate rabbitTemplate;
 
 
     /**
@@ -52,6 +57,8 @@ public final class StaticComponent {
         log.info("rsa[{}] init success...", rsaKit);
         messageSource = SpringUtil.getBean(MessageSource.class);
         log.info("messageSource[{}] init success...", messageSource);
+        rabbitTemplate = SpringUtil.getBean(RabbitTemplate.class);
+        log.info("rabbitTemplate[{}] init success...", rabbitTemplate);
 
     }
 

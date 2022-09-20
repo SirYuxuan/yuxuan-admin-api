@@ -10,7 +10,7 @@ import lombok.Data;
  * @since 2022/9/16
  */
 @Data
-public class BaseQuery<T extends BaseEntity<?>> {
+public class BaseQuery<T> {
 
     /**
      * 模糊查询字段
@@ -33,7 +33,9 @@ public class BaseQuery<T extends BaseEntity<?>> {
     /**
      * 禁止外部修改分页参数
      */
-    private void setLimitStart(Long limitStart){}
+    private void setLimitStart(Long limitStart) {
+    }
+
     /**
      * 排序字段
      */
@@ -49,7 +51,7 @@ public class BaseQuery<T extends BaseEntity<?>> {
     private String[] createTime;
 
     public BaseQuery() {
-        this.limitStart = (page - 1) * size;
+        this.limitStart = (page) * size;
         this.processingSort();
     }
 
@@ -61,7 +63,7 @@ public class BaseQuery<T extends BaseEntity<?>> {
      * @return 分页对象
      */
     public Page<T> getPage() {
-        return new Page<T>(page, size);
+        return new Page<T>(page + 1, size);
     }
 
     /**

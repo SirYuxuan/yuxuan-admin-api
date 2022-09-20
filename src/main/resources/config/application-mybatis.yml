@@ -3,3 +3,5 @@ mybatis-plus:
     banner: false
   #configuration:
    #default-enum-type-handler: com.yuxuan66.admin.support.mybatis.MybatisEnumTypeHandler
+    db-config:
+      id-type: auto

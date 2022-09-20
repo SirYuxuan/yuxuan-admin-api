@@ -25,6 +25,23 @@ public interface CacheKey {
      */
     String CAPTCHA_CODE = "CAPTCHA_CODE";
 
+
+    /**
+     * 系统的验证码缓存
+     */
+    String CODE_CACHE = "CODE_CACHE:";
+
+    /**
+     * 修改邮件校验模板
+     */
+    String TEMPLATE_UPDATE_EMAIL = "updateEmailTemplate";
+
+    /**
+     * 修改邮件校验模板-英文
+     */
+    String TEMPLATE_UPDATE_EMAIL_EN = "updateEmailTemplateEn";
+
+
     // ************************ SysConfig内容 ***************************/
 
     @RealKey
@@ -38,6 +55,43 @@ public interface CacheKey {
      * rsa 公钥
      */
     String CONFIG_RSA_PUBLIC = "rsaPublic";
+
+    /**
+     * 发信用户
+     */
+    String CONFIG_MAIL_USER = "mailUser";
+    /**
+     * 发信来源
+     */
+    String CONFIG_MAIL_FROM = "mailFrom";
+    /**
+     * 发信用户密码
+     */
+    String CONFIG_MAIL_PASS = "mailPass";
+    /**
+     * 发信服务地址
+     */
+    String CONFIG_MAIL_HOST = "mailHost";
+    /**
+     * 邮箱端口号
+     */
+    String CONFIG_MAIL_PORT = "mailPort";
+    /**
+     * 系统验证码长度
+     */
+    String CONFIG_CODE_LENGTH = "codeLen";
+    /**
+     * 验证码过期时间
+     */
+    String CONFIG_CODE_EXPIRE_TIME = "codeExpireTime";
+    /**
+     * 凭证-阿里云 keyId
+     */
+    String CONFIG_CREDENTIAL_ALI_ACCESS_KEY_ID = "aliAccessKeyId";
+    /**
+     * 凭证-阿里云 keySecret
+     */
+    String CONFIG_CREDENTIAL_ALI_ACCESS_KEY_SECRET="aliAccessKeySecret";
 
     // ************************ Service缓存 ***************************/
     /**

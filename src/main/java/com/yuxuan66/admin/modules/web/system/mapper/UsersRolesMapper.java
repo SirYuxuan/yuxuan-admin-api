@@ -1,6 +1,5 @@
 package com.yuxuan66.admin.modules.web.system.mapper;
 
-import com.yuxuan66.admin.modules.web.system.entity.RolesMenus;
 import com.yuxuan66.admin.modules.web.system.entity.UsersRoles;
 import com.yuxuan66.admin.support.base.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
@@ -12,7 +11,7 @@ import java.util.List;
  * @since 2022/9/16
  */
 @Mapper
-public interface UsersRolesMapper extends BaseMapper<RolesMenus> {
+public interface UsersRolesMapper extends BaseMapper<UsersRoles> {
 
     /**
      * 批量添加用户角色关联

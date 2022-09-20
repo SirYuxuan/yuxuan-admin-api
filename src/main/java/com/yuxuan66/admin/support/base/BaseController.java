@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  */
 @SuppressWarnings("all")
 @RequiredArgsConstructor
-public class BaseController<S extends BaseService<? extends BaseEntity<?>, ? extends BaseMapper<?>>> {
+public class BaseController<S> {
 
 
     @Autowired

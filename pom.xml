@@ -25,20 +25,49 @@
         <ehi-verification.version>1.0.6</ehi-verification.version>
         <sharding.version>4.1.1</sharding.version>
         <jaxb-impl.version>4.0.0</jaxb-impl.version>
-        <poi.version>5.1.0</poi.version>
+        <poi.version>5.2.2</poi.version>
+        <javax.mail.version>1.6.2</javax.mail.version>
+        <easy-captcha.version>1.6.2</easy-captcha.version>
+        <alibabacloud-dysmsapi20170525.version>1.0.1</alibabacloud-dysmsapi20170525.version>
     </properties>
 
     <dependencies>
 
 
-        <!-- Excel POI -->
+        <!-- 阿里云短信服务 -->
+        <dependency>
+            <groupId>com.aliyun</groupId>
+            <artifactId>alibabacloud-dysmsapi20170525</artifactId>
+            <version>${alibabacloud-dysmsapi20170525.version}</version>
+        </dependency>
+
+        <!-- Captcha -->
+        <dependency>
+            <groupId>com.github.whvcse</groupId>
+            <artifactId>easy-captcha</artifactId>
+            <version>${easy-captcha.version}</version>
+        </dependency>
+
+        <!-- Java Mail -->
+        <dependency>
+            <groupId>com.sun.mail</groupId>
+            <artifactId>javax.mail</artifactId>
+            <version>${javax.mail.version}</version>
+        </dependency>
+
+        <!--RabbitMQ-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-amqp</artifactId>
+        </dependency>
+
+
+        <!-- POI -->
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi-ooxml</artifactId>
             <version>${poi.version}</version>
         </dependency>
-
-
 
         <!-- Java EE API，由于JDK9提出的模块化的概念，导致Java.EE模块不再以后的版本里默认提供 -->
         <dependency>
@@ -69,6 +98,12 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+
+        <!-- SpringBoot AOP -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
         </dependency>
 
         <!-- Database -->

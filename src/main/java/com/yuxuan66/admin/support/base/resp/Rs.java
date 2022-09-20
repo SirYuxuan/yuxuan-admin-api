@@ -120,11 +120,11 @@ public class Rs extends Dict {
     /**
      * 返回错误消息,使用I18n获取数据
      *
-     * @param msg 返回内容
+     * @param key i18n key
      * @return 警告消息
      */
-    public static Rs errorI(String msg) {
-        return Rs.error(I18n.get(msg), null);
+    public static Rs errorI(String key) {
+        return Rs.error(I18n.get(key), null);
     }
 
     /**

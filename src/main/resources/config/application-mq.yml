@@ -1,0 +1,7 @@
+spring:
+  rabbitmq:
+    host: 47.99.84.100
+    port: 5673
+    username: yuxuan
+    password: Yuxuanll2012
+    virtual-host: YuxuanAdmin

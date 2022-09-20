@@ -42,7 +42,10 @@ public class Stp {
                 return user;
             }
         }
-        return null;
+        User defaultUser = new User();
+        defaultUser.setId(-1L);
+        defaultUser.setNickName("Not User");
+        return defaultUser;
     }
 
 
