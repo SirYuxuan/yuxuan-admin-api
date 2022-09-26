@@ -20,7 +20,7 @@ public class BaseEntity<T extends Model<?>> extends Model<T>{
     private Long id;
 
     /**
-     * 创建时间
+     * 创建时间0
      */
     @TableField(fill = FieldFill.INSERT)
     private Timestamp createTime;

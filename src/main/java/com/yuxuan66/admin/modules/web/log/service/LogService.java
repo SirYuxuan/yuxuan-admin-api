@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class LogService extends BaseService<Log, LogMapper> {
-
+   
     /**
      * 分页查询我的操作日志
      * @param logQuery 查询条件
